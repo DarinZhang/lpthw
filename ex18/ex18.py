@@ -32,3 +32,4 @@ print_none()
 # 2. 
 # 调试时，发现一个函数内，如果一会儿自己敲4格空格缩进，一会儿使用TAB缩进，
 # 运行时，会报错 "IndentationError: unexpected indent"
+# 需要统一缩进格式，要么统一用TAB，要么统一用4格空格
