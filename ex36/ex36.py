@@ -96,3 +96,17 @@ def start():
 		
 print u"太阳急速老化。科学家预计几百年后，太阳将膨胀并吞噬掉地球"
 start()
+
+
+# notes
+# 概率出现此脚本在别人的cmd或powershell上运行时，部分中文显示乱码，还会异常退出。
+# 目前解决方法是：
+#     在cmd或powershell上输入：
+#     chcp 65001  
+#     chcp 936
+# 输入上述两个命令后，再运行脚本就正常了
+# 具体什么原因还没搞清楚，或者这个是Python或cmd/powershell的BUG？
+# chcp 65001 # 换成utf-8格式
+# chcp 936   # 换成默认的gbk
+# chcp 437   # 换成美国英语
+# 具体参考https://www.cnblogs.com/sunshuhai/p/6242275.html
