@@ -25,7 +25,7 @@ print stuff[-1] # whoa! fancy
 # pop(stuff)
 print stuff.pop()
 # notes
-# join() 已字符' '连接列表中的各元素
+# join() 以字符' '来连接列表中的各元素
 # join(' ', stuff)
 print ' '.join(stuff) # what? cool!
 # list[a, b] 即 [list[a], ..., list[b])
