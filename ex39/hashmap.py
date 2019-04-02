@@ -2,6 +2,7 @@
 
 def new(num_buckets = 256):
 	"""Initializes a Map with the given number of buckets."""
+	# aMap为列表，列表一共有num_buckets个元素，每个元素也是列表（二级列表）
 	aMap = []
 	for i in range(0, num_buckets):
 		aMap.append([])
@@ -10,6 +11,8 @@ def new(num_buckets = 256):
 def hash_key(aMap, key):
 	"""Given a key this will create a number and then convert it to
 	an index for the aMap's buckets."""
+	# key哈希得到的整数,再用列表aMap的长度取余数
+	# 即key对应在aMap中的列表元素下标
 	return hash(key) % len(aMap)
 
 def get_bucket(aMap, key):
