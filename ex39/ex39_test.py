@@ -38,10 +38,14 @@ print "Florida has: %s" % hashmap.get(cities, hashmap.get(states, 'Florida'))
 # print every state abbreviation
 print '-' * 10
 hashmap.list(states)
+print '-' * 10
+hashmap.listIter(states)
 
 # print every city in state
 print '-' * 10
 hashmap.list(cities)
+print '-' * 10
+hashmap.listIter(cities)
 
 print '-' * 10
 state = hashmap.get(states, 'Texas')
@@ -53,4 +57,4 @@ if not state:
 # can you do this on one line?
 city = hashmap.get(cities, "TX", 'Does Not Exist')
 print "The city for the state 'TX' is: %s" % city
-
+print "The city for the state 'TX' is: %s" % hashmap.get(cities, "TX", 'Does Not Exist')
