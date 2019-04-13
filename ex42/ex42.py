@@ -43,7 +43,7 @@ class Employee(Person):
 		print "From class employee: ", self.name
 	
 	def printNameFromPar(self):
-		# (Employee, self).printName()
+		# super(Employee, self).printName()
 		Person.printName(self)
 		
 ## is-a
