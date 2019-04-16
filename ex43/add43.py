@@ -248,7 +248,9 @@ class EscapePod(Scene):
 				if ready == 'Yes':
 					you = Player()
 					boss = Player()
-					res = Combat(you, boss).result_of_battle()
+					battle = Combat(you, boss)
+					battle.enter()
+					res = battle.result_of_battle()
 					
 					if res == 'playerA':
 						print "You won!"
