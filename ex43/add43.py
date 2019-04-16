@@ -28,7 +28,7 @@ class Combat(Scene):
 		self.playerB = playerB
 	
 	def enter(self):
-		print "Each player has three cards. Successively show one card. The one showing a bigger"
+		print "Each player has three cards. Successively shows one card. The player showing a bigger"
 		print "card wins."
 		
 	def result_of_battle(self):
@@ -36,7 +36,7 @@ class Combat(Scene):
 		for i in xrange(0, 3):
 			cardA = self.playerA.show_card()
 			cardB = self.playerB.show_card()
-			print "You show a card of '%s' and the Gothon show a card of '%s'" % (cardA, cardB)
+			print "You show a card of '%s' and the Gothon shows a card of '%s'" % (cardA, cardB)
 			
 			if cardA == cardB:
 				result = '--'
