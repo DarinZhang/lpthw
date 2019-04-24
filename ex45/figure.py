@@ -1,6 +1,11 @@
 # -*- coding: utf8 -*-
 '''
-定义人物角色类
+角色类的定义
+
+角色有：
+1. 主人公
+2. 反派BOSS
+3. 小怪
 '''
 
 class CCreature(object):
@@ -34,7 +39,7 @@ class CProtagonist(CCreature):
 	主人公类定义
 	'''
 	def __init__(self):
-		super(CProtagonist, self).healthValue = 5
+		super(CProtagonist, self).healthValue = 3
 
 class CBoss(CCreature):
 	'''
