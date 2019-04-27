@@ -8,14 +8,15 @@
 3. 小怪
 '''
 
+from random import randint
+
 class CCreature(object):
 	'''
 	生物类定义
 	'''	
 	def __init__(self):
 		self.healthValue = 1
-		self.fiveSpiritVal = 
-		{
+		self.fiveSpiritVal = {
 			"metal": 1,
 			"wood" : 1,
 			"water": 1,
@@ -32,7 +33,15 @@ class CCreature(object):
 		return self.fiveSpiritVal[spiritName]
 	def SetSomeSpiritVal(self, spiritName, val):
 		self.fiveSpiritVal[spiritName] = val
+	def AddSomeSpiritVal(self, spiritName, val):
+		self.fiveSpiritVal[spiritName] += val
+	def ReduceSomeSpiritVal(self, spiritName val):
+		self.fiveSpiritVal[spiritName] -= val
+	def PrintSomeSpiritVal(self):
+		print "金:%d 木:%d 水:%d 火:%d 土:%d" % self.fiveSpiritVal
 		
+	def GetThreeCard(self):
+		randint(1,5)
 		
 class CProtagonist(CCreature):
 	'''
@@ -40,6 +49,33 @@ class CProtagonist(CCreature):
 	'''
 	def __init__(self):
 		super(CProtagonist, self).healthValue = 3
+		
+		# 拥有五灵珠的情况
+		# 集齐金木水火土五灵珠,则直接通关成功
+		self.hasBead = {
+			"metal": 0,
+			"wood" : 0,
+			"water": 0,
+			"fire" : 0,
+			"earth": 0
+		}
+		
+	def AddSomeSpiritVal(self, spiritName, val):
+		CScene(self).AddSomeSpiritVal(spiritName, val)
+		print u"恭喜你。你的五灵值升级了，目前为"
+		self.PrintSomeSpiritVal()
+	def ReduceSomeSpiritVal(self, spiritName, val):
+		super(CScene, self).ReduceSomeSpiritVal(spiritName, val)
+		print u"很抱歉。你的五灵值降低了，目前为"
+		self.PrintSomeSpiritVal()
+	def GainSpiritBead(self, spiritName):
+		print u"获得%s灵珠" % combat.MapSpiritName[spiritName]
+		self.hasBead[spiritName] = 1
+		AddSomeSpiritVal(self, spiritName, 1)
+
+# 主人公全局对象-张大凡
+zhurengong = CProtagonist();
+
 
 class CBoss(CCreature):
 	'''
