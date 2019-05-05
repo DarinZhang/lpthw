@@ -17,6 +17,8 @@
 '''
 
 import time
+import combat
+
 def LoadTip(stat, res):
 	"""
 	场景加载提示语
@@ -64,7 +66,7 @@ class CscStart(CScene):
 		DelaySleep()
 		print u"因此，刚成年的张大凡就被爹娘狠狠地双打了一顿。"
 		DelaySleep()
-		print u"气愤之余，张大凡离家出走，刚出村口，就撞上一个黑衣人躺在地上，身上满是鲜血。"
+		print u"气愤之余，张大凡离家出走，刚出村口，就撞上一个黑衣人躺在地上，脸上一道刀疤，身上满是鲜血。"
 		DelaySleep()
 		print u"走进一看，此人已断气。黑色的衣衫下隐约看到一本书和一颗亮晶晶的珠子。"
 		DelaySleep()		
@@ -116,18 +118,18 @@ class CscStart(CScene):
 		print u"这个人为什么会倒在村口呢？身上的剑伤哪来的？一系列的疑问萦绕在张大凡心头。"
 		print u"出于好心，张大凡给他入土为安，给他立了无名碑。"
 		# 下一场景:十里坡（练级）
-		zhangdafan.nextScene = 'GreenHandsHamlet'
+		self.nextScene = 'GreenHandsHamlet'
 
-class CSceneGreenHandsHamlet(CScene):
+class CScGreenHandsHamlet(CScene):
 	'''
 	 十里坡（新手村）
 	'''
 	def __init__(self):
 		super(CSceneGreenHandsHamlet, self).__init__()
-		print u"****半个月后****"
+		print u"\n\n****半个月后****"
 		print u"听说村外十里坡最近经常出现妖怪伤人事件。近几个月，爹娘都会去那附近采药。"
 		DelaySleep()
-		print u"实在不放心，决定前去一探究竟。若遇上妖怪，则将其诛杀。"
+		print u"实在不放心，决定前去一探究竟。"
 		DelaySleep()
 		
 	def Enter(self):
@@ -136,21 +138,53 @@ class CSceneGreenHandsHamlet(CScene):
 		DelaySleep()
 		print u"并不像村民中口所说的不太平。不如四处走走，就当春游了。"
 		DelaySleep()
-		print u"突然不远处传来一阵孩童的哭喊声。上前一看，一个六、七岁的男童被五个长得奇形怪状的"
+		print u"突然不远处传来一阵孩童的哭喊声。上前一看，一个六、七岁的男童被几个长得奇形怪状的"
 		DelaySleep()
 		print u"妖兽包围着。妖兽长着獠牙，爪牙锋利，随时欲扑上去伤害男童。"
 		DelaySleep()
 		print u"!!!赶紧诛杀这些妖兽。"
 		
 		# 进入战斗系统
+		# 杀三个小鬼
+		for i in xrange(0, 3):
+			monster = figure.CMonster()
+			res = combat.Combating(monster)
+			
+			if res == 'win':
+				# 对方的五灵值归自己所有
+				zhangdafan.AddSomeSpiritVal(monster)
+			elif res == 'defeat':
+				# 生命值减一
+				zhangdafan.ReduceHealthVal(1)
+				if False == zhangdafan.IsAlive():
+					self.nextScene = 'Defeat'
+					return
+		
+		combat.CombatReport()
+		self.nextScene = 'DisturbanceShop'
+		
+		print u"妖兽几乎都被诛杀。其中一只妖兽躺在地上，奄奄一息，快断气前说道："
+		print u"风波店中的天行刀主是你什么人？你为什么会他的武功道法？哼，别得意，我们鬼面门不会放过"
+		print u"天玄宗的，你们都等死吧！！！"
+		print u"说完，那只妖兽便断气了。\n\n"
+		print u"天行刀主？鬼面门？天玄宗？张大凡一时间不知道这些是什么。带着疑虑，张大凡把孩子送回了家。"
 		
 		
+class CScDisturbanceShop(CScene):
+	'''
+	风波店（卷入江湖追杀）
+	'''
+	def __init__(self):
+		DelaySleep()
+		print u"\n\n\n夜深人静，窗外星光点点，蛙声一片。"
+		print u"张大凡躺在窗口，怎么都睡不着。白天的事情始终没搞清楚。"
+		print u"听村里说书先生说过，天玄宗是中原大陆上第一修仙门派，天行刀主是天玄宗的三元老之一。"
+		print u"而鬼面门则是第一魔教，门中包括修炼魔功的魔人，及各类妖魔。"
+		print u"听说，天行刀主常穿黑衣，脸上有一处刀疤。难道半个月前，在村口遇到的黑衣人就是天行刀主？"
+		print u"到底什么人能杀死天行刀主？从妖兽的话里可以推断出，鬼面门意图对付天玄宗。显然，鬼面门已经开始行动。"
+		print u"鬼面门究竟有什么阴谋？要怎么对付天玄宗？"
+		print u"好多问题困扰着张大凡。看来只能去一趟妖兽提到的风波店，看看能不能发现什么蛛丝马迹。"
 		
-	
-# tScene = CSceneGreenHandsHamlet()
-# tScene.Enter()	
-	
-	
 	
 	
 	

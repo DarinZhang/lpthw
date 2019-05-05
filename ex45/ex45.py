@@ -13,7 +13,7 @@ import scene
 scene.LoadTip(u"场景模块导入中", u"场景模块导入成功")
 
 Map = {
-	"Start" : CScStart(),
+	"Start" : scene.CScStart(),
 	"GreenHandsHamlet" : scene.CScGreenHandsHamlet(),
 	"DisturbanceShop" : scene.CScDisturbanceShop(),
 	"ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
@@ -25,7 +25,6 @@ Map = {
 	"Exit" : scene.CScExit()
 }
 
-
 def StartGame():
 	# 开始游戏
 	
@@ -34,14 +33,13 @@ def StartGame():
 	nextSceneName = nowScene.GetNextScene()
 	
 	while nextSceneName != "Pass" and nextSceneName != "Defeat":
-		nowScene = Map[nextScene]
+		nowScene = Map[nextSceneName]
 		nowScene.Enter()
 		nextSceneName = nowScene.GetNextScene()
 	
 	print u"\n 游戏已结束，是否重新再来一次？是[Y] 否[N]"
 	res = raw_input("> ")
 	return res
-	
 
 # main函数。脚本入口处
 for i in xrange(1,5) :

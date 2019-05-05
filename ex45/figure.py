@@ -28,6 +28,15 @@ class CCreature(object):
 		return self.healthValue
 	def SetHealthVal(self, val):
 		self.healthValue = val
+	def AddHealthVal(self, val):
+		self.healthValue += val
+	def ReduceHealthVal(self, val):
+		self.healthValue -= val
+	def IsAlive(self):
+		if self.healthValue <= 0:
+			return False
+		else:
+			return True
 	
 	def GetSomeSpiritVal(self, spiritName):
 		return self.fiveSpiritVal[spiritName]
@@ -41,7 +50,30 @@ class CCreature(object):
 		print "金:%d 木:%d 水:%d 火:%d 土:%d" % self.fiveSpiritVal
 		
 	def GetThreeCard(self):
-		randint(1,5)
+		cards = {}
+		for i in xrange(0, 3):
+			index = randint(1,5)
+			
+			if index == 1:
+				key = 'metal'
+			elif index == 2:
+				key = 'wood'
+			elif index == 3:
+				key = 'water'
+			elif index == 4:
+				key = 'fire'
+			else 
+				key = 'earth'
+			cards[key] = GetSomeSpiritVal(self, key)
+			
+		return cards
+	
+	def AddSpiritForWin(self, opponent):
+		AddSomeSpiritVal(self, 'metal', opponent.GetSomeSpiritVal('metal'))
+		self.AddSomeSpiritVal(self, 'wood', opponent.GetSomeSpiritVal('wood'))
+		self.AddSomeSpiritVal(self, 'water', opponent.GetSomeSpiritVal('water'))
+		self.AddSomeSpiritVal(self, 'fire', opponent.GetSomeSpiritVal('fire'))
+		self.AddSomeSpiritVal(self, 'earth', opponent.GetSomeSpiritVal('earth'))
 		
 class CProtagonist(CCreature):
 	'''
@@ -61,7 +93,7 @@ class CProtagonist(CCreature):
 		}
 		
 	def AddSomeSpiritVal(self, spiritName, val):
-		CScene(self).AddSomeSpiritVal(spiritName, val)
+		CCreature(self).AddSomeSpiritVal(spiritName, val)
 		print u"恭喜你。你的五灵值升级了，目前为"
 		self.PrintSomeSpiritVal()
 	def ReduceSomeSpiritVal(self, spiritName, val):
@@ -72,6 +104,7 @@ class CProtagonist(CCreature):
 		print u"获得%s灵珠" % combat.MapSpiritName[spiritName]
 		self.hasBead[spiritName] = 1
 		AddSomeSpiritVal(self, spiritName, 1)
+		
 
 # 主人公全局对象-张大凡
 zhurengong = CProtagonist();
