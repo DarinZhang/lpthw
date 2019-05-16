@@ -9,6 +9,36 @@
 '''
 
 from random import randint
+import combat
+from collections import defaultdict
+
+class DZMultiMap(object):
+	'''
+	实现类似C++中multimap类型（键允许重复）
+	'''
+	def __init__(self):
+		self.keyS = []
+		self.valueS = []
+	
+	def Insert(self, key, value):
+		self.keyS.append(key)
+		self.valueS.append(value)
+		
+	def Len(self):
+		return len(self.keyS)
+		
+	def GetKeys(self):
+		return self.keyS
+	
+	def GetValues(self):
+		return self.valueS
+	
+	def GetItem(self, index):
+		itemIndex = []
+		itemIndex.append(self.keyS[index])
+		itemIndex.append(self.valueS[index])
+		return itemIndex
+
 
 class CCreature(object):
 	'''
@@ -44,13 +74,18 @@ class CCreature(object):
 		self.fiveSpiritVal[spiritName] = val
 	def AddSomeSpiritVal(self, spiritName, val):
 		self.fiveSpiritVal[spiritName] += val
-	def ReduceSomeSpiritVal(self, spiritName val):
+	def ReduceSomeSpiritVal(self, spiritName, val):
 		self.fiveSpiritVal[spiritName] -= val
 	def PrintSomeSpiritVal(self):
-		print "金:%d 木:%d 水:%d 火:%d 土:%d" % self.fiveSpiritVal
+		print u"金:%d 木:%d 水:%d 火:%d 土:%d" % (self.fiveSpiritVal['metal'],
+			self.fiveSpiritVal['wood'],
+			self.fiveSpiritVal['water'],
+			self.fiveSpiritVal['fire'],
+			self.fiveSpiritVal['earth'])
 		
 	def GetThreeCard(self):
-		cards = {}
+		cards = DZMultiMap()
+		
 		for i in xrange(0, 3):
 			index = randint(1,5)
 			
@@ -62,9 +97,10 @@ class CCreature(object):
 				key = 'water'
 			elif index == 4:
 				key = 'fire'
-			else 
+			else:
 				key = 'earth'
-			cards[key] = GetSomeSpiritVal(self, key)
+			
+			cards.Insert(key, self.GetSomeSpiritVal(key))
 			
 		return cards
 	
@@ -80,7 +116,8 @@ class CProtagonist(CCreature):
 	主人公类定义
 	'''
 	def __init__(self):
-		super(CProtagonist, self).healthValue = 3
+		CCreature.__init__(self)
+		super(CProtagonist, self).SetHealthVal(3)
 		
 		# 拥有五灵珠的情况
 		# 集齐金木水火土五灵珠,则直接通关成功
@@ -93,7 +130,10 @@ class CProtagonist(CCreature):
 		}
 		
 	def AddSomeSpiritVal(self, spiritName, val):
-		CCreature(self).AddSomeSpiritVal(spiritName, val)
+		# CCreature(self).AddSomeSpiritVal(spiritName, val) # Error
+		CCreature.AddSomeSpiritVal(self, spiritName, val)
+		# super(CProtagonist, self).AddSomeSpiritVal(spiritName, val)
+		# self.fiveSpiritVal[spiritName] += val
 		print u"恭喜你。你的五灵值升级了，目前为"
 		self.PrintSomeSpiritVal()
 	def ReduceSomeSpiritVal(self, spiritName, val):
@@ -103,7 +143,8 @@ class CProtagonist(CCreature):
 	def GainSpiritBead(self, spiritName):
 		print u"获得%s灵珠" % combat.MapSpiritName[spiritName]
 		self.hasBead[spiritName] = 1
-		AddSomeSpiritVal(self, spiritName, 1)
+		# AddSomeSpiritVal(self, spiritName, 1) # Error
+		self.AddSomeSpiritVal(spiritName, 1)
 		
 
 # 主人公全局对象-张大凡

@@ -18,6 +18,9 @@
 
 import time
 import combat
+import figure
+from figure import zhurengong as zhangdafan
+
 
 def LoadTip(stat, res):
 	"""
@@ -51,14 +54,20 @@ class CScene(object):
 		# 返回下一个场景
 		return self.nextScene
 	
-class CscStart(CScene):
+class CScStart(CScene):
 	'''
 	开篇
 	'''
 	def __init__(self):
-		CScene(self).__init__()
+		pass
+		
+	def Background(self):
+		# CScene(self).__init__() # Error
+		CScene.__init__(self)
 		
 	def Enter(self):
+		self.Background()
+		
 		print u"=====南宋末年，余杭镇====="
 		print u"刚经历冠礼的张大凡闲着无聊，和隔壁的小虎去秧田里捕鱼。"
 		DelaySleep()
@@ -104,13 +113,13 @@ class CscStart(CScene):
 		print u"5. 黄色"
 		beadColor = raw_input("> ")
 		
-		if bookName == '1':
+		if beadColor == '1':
 			zhangdafan.GainSpiritBead('metal')
-		elif bookName == '2':
+		elif beadColor == '2':
 			zhangdafan.GainSpiritBead('wood')
-		elif '3' == bookName:
+		elif '3' == beadColor:
 			zhangdafan.GainSpiritBead('water')
-		elif bookName == '4':
+		elif beadColor == '4':
 			zhangdafan.GainSpiritBead('fire')
 		else:
 			zhangdafan.GainSpiritBead('earth')		
@@ -125,7 +134,10 @@ class CScGreenHandsHamlet(CScene):
 	 十里坡（新手村）
 	'''
 	def __init__(self):
-		super(CSceneGreenHandsHamlet, self).__init__()
+		pass
+	
+	def Background(self):
+		super(CScGreenHandsHamlet, self).__init__()
 		print u"\n\n****半个月后****"
 		print u"听说村外十里坡最近经常出现妖怪伤人事件。近几个月，爹娘都会去那附近采药。"
 		DelaySleep()
@@ -133,6 +145,9 @@ class CScGreenHandsHamlet(CScene):
 		DelaySleep()
 		
 	def Enter(self):
+		# Background(self) # Error
+		self.Background()
+		
 		print u"\n====十里坡====\n"
 		print u"天气晴朗，万里无云。十里坡还是如幼时记忆中的一样，绿草如茵，鸟语花香。"
 		DelaySleep()
@@ -152,7 +167,7 @@ class CScGreenHandsHamlet(CScene):
 			
 			if res == 'win':
 				# 对方的五灵值归自己所有
-				zhangdafan.AddSomeSpiritVal(monster)
+				zhangdafan.AddSpiritForWin(monster)
 			elif res == 'defeat':
 				# 生命值减一
 				zhangdafan.ReduceHealthVal(1)
@@ -168,22 +183,44 @@ class CScGreenHandsHamlet(CScene):
 		print u"天玄宗的，你们都等死吧！！！"
 		print u"说完，那只妖兽便断气了。\n\n"
 		print u"天行刀主？鬼面门？天玄宗？张大凡一时间不知道这些是什么。带着疑虑，张大凡把孩子送回了家。"
-		
-		
+			
 class CScDisturbanceShop(CScene):
 	'''
 	风波店（卷入江湖追杀）
 	'''
 	def __init__(self):
+		pass
+	
+	def Background(self):
 		DelaySleep()
 		print u"\n\n\n夜深人静，窗外星光点点，蛙声一片。"
+		DelaySleep()
 		print u"张大凡躺在窗口，怎么都睡不着。白天的事情始终没搞清楚。"
+		DelaySleep()
 		print u"听村里说书先生说过，天玄宗是中原大陆上第一修仙门派，天行刀主是天玄宗的三元老之一。"
+		DelaySleep()
 		print u"而鬼面门则是第一魔教，门中包括修炼魔功的魔人，及各类妖魔。"
+		DelaySleep()
 		print u"听说，天行刀主常穿黑衣，脸上有一处刀疤。难道半个月前，在村口遇到的黑衣人就是天行刀主？"
+		DelaySleep()
 		print u"到底什么人能杀死天行刀主？从妖兽的话里可以推断出，鬼面门意图对付天玄宗。显然，鬼面门已经开始行动。"
+		DelaySleep()
 		print u"鬼面门究竟有什么阴谋？要怎么对付天玄宗？"
+		DelaySleep()
 		print u"好多问题困扰着张大凡。看来只能去一趟妖兽提到的风波店，看看能不能发现什么蛛丝马迹。"
+		DelaySleep()
+		
+	def Enter(self):
+		# Background(self) # Error
+		self.Background()
+	
+		print u"\n====风波店====\n"
+		print u"张大凡住在风波店天字七号房已经三天了，没见到什么奇怪的人或事，跟普通的旅店一样普通。"
+		print u"这天晚上不知道吃了什么一直闹肚子，一直往茅厕跑。"
+		print u"这不肚子又闹腾了，张大凡蹲茅坑呢。"
+		print u"隐隐约约觉得有人在讲话，声音很小，不注意都听不到。"
+		print u"张大凡意识到是有人在隔壁某个蹲位窃窃私语，顿时运起真气，屏气聆听。"
+		print u"老者：把这个放入天字二号房"
 		
 	
 	

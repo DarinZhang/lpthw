@@ -9,28 +9,35 @@
 进入游戏玩下就明白了。
 '''
 
+print '11'
+
 import scene
 scene.LoadTip(u"场景模块导入中", u"场景模块导入成功")
+
+print '22'
 
 Map = {
 	"Start" : scene.CScStart(),
 	"GreenHandsHamlet" : scene.CScGreenHandsHamlet(),
 	"DisturbanceShop" : scene.CScDisturbanceShop(),
-	"ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
-	"ShuraGarden" : scene.CScShuraGarden(),
-	"ShaolinTemple" : scene.CScShaolinTemple(),
-	"Pass" : scene.CScPass(),
-	"Defeat" : scene.CScDefeat(),
-	"Again" : scene.CScAgain(),
-	"Exit" : scene.CScExit()
+	# "ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
+	# "ShuraGarden" : scene.CScShuraGarden(),
+	# "ShaolinTemple" : scene.CScShaolinTemple(),
+	# "Pass" : scene.CScPass(),
+	# "Defeat" : scene.CScDefeat(),
+	# "Again" : scene.CScAgain(),
+	# "Exit" : scene.CScExit()
 }
 
 def StartGame():
 	# 开始游戏
 	
 	nowScene = Map['Start']
+	print '1'
 	nowScene.Enter()
+	print '2'
 	nextSceneName = nowScene.GetNextScene()
+	print '3'
 	
 	while nextSceneName != "Pass" and nextSceneName != "Defeat":
 		nowScene = Map[nextSceneName]
@@ -42,7 +49,9 @@ def StartGame():
 	return res
 
 # main函数。脚本入口处
+print '4'
 for i in xrange(1,5) :
+	print '5'
 	res = StartGame()
 	if res == 'N':
 		break

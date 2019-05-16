@@ -4,17 +4,35 @@
 战斗系统
 '''
 
-import figure
-scene.LoadTip(u"角色模块导入中", u"角色模块导入成功")
+# 模块相互import,报错
+# scene中import combat; combat中import scene
+# import scene
+# scene.LoadTip(u"战斗系统导入中", u"战斗系统导入成功")
 
+import time
+
+def LoadTip(stat, res):
+	"""
+	场景加载提示语
+	"""
+	for i in xrange(1, 4):
+		print stat, "..."*i
+		time.sleep(1)
+	print res, '\n'
+
+LoadTip(u"战斗系统导入中", u"战斗系统导入成功")	
+
+
+import figure
 from figure import zhurengong as zhangdafan
+LoadTip(u"角色模块导入中", u"角色模块导入成功")	
 
 MapSpiritName = {
-	'metal' = '金',
-	'wood' = '木',
-	'water' = '水',
-	'fire' = '火',
-	'earth' = '土'
+	'metal': u'金',
+	'wood' : u'木',
+	'water' : u'水',
+	'fire' : u'火',
+	'earth' : u'土'
 }
 
 bFirstCombat = True
@@ -23,6 +41,8 @@ def CombatTip():
 	'''
 	战斗系统说明
 	'''
+	global bFirstCombat
+	
 	if bFirstCombat:
 		bFirstCombat = False
 		print u"这是您第一次进入战斗系统。请仔细阅读下面的战斗规则。"
@@ -51,33 +71,33 @@ def comparSpirit(spiritA, spiritB):
 		return 'tie'
 	
 	if spiritA == 'metal':
-		if spiritB == 'wood' || if spiritB == 'earth':
+		if spiritB == 'wood' or spiritB == 'earth':
 			return 'win'
-		else
+		else:
 			return 'defeat'
 	
 	if spiritA == 'wood':
-		if spiritB == 'earth' || if spiritB == 'water':
+		if spiritB == 'earth' or spiritB == 'water':
 			return 'win'
-		else 
+		else: 
 			return 'defeat'
 			
 	if spiritA == 'water':
-		if spiritB == 'fire' || if spiritB == 'metal':
+		if spiritB == 'fire' or spiritB == 'metal':
 			return 'win'
-		else
+		else:
 			return 'defeat'
 	
 	if spiritA == 'fire':
-		if spiritB = 'metal' || if spiritB == 'wood':
+		if spiritB == 'metal' or spiritB == 'wood':
 			return 'win'
-		else
+		else:
 			return 'defeat'
 	
 	if spiritA == 'earth':
-		if spiritB == 'water' || if spiritB == 'fire':
+		if spiritB == 'water' or spiritB == 'fire':
 			return 'win'
-		else
+		else:
 			return 'defeat'
 	
 
@@ -89,29 +109,45 @@ def Combating(playerB):
 	
 	cardsDafan = zhangdafan.GetThreeCard()
 	cardsB = playerB.GetThreeCard()
-	keysDafan = cardsDafan.keys()
-	keysB = cardsB.keys()
+	keysDafan = cardsDafan.GetKeys()
+	keysB = cardsB.GetKeys()
+	valuesDafan = cardsDafan.GetValues()
+	valuesB = cardsB.GetValues()	
+	print "keysDafan: ", keysDafan
+	print "keysB: ", keysB
 	resList = []
 	for i in xrange(0, 3):
+		print 'compare card index: ', i
 		spiritDafan = keysDafan[i]
 		spiritB = keysB[i]
 		res = comparSpirit(spiritDafan, spiritB)
+		if res == 'tie':
+			# 五灵属性相同时，比较五灵值
+			spValDafan = valuesDafan[i]
+			spValB = valuesB[i]
+			if spValDafan == spValB:
+				res = 'tie'
+			elif spValDafan > spValB:
+				res = 'win'
+			else:
+				res = 'defeat'
+			
 		resList.append(res)
 	
-	if count('win') >= 2:
+	if resList.count('win') >= 2:
 		return 'win'
-	elif count('defeat') >= 2:
+	elif resList.count('defeat') >= 2:
 		return 'defeat'
-	else
+	else:
 		return 'tie'
 
 def CombatReport():
 	'''
 	战果统计
 	'''
-	print u"恭喜，顺利通过本场景。"
+	print u"恭喜，战斗获胜。"
 	print u"目前，少侠的境界如下："
-	print u"<<<生命值: %d", zhangdafan.GetHealthVal()
+	print u"<<<生命值: %d" % zhangdafan.GetHealthVal()
 	print u"<<<", zhangdafan.PrintSomeSpiritVal()
 	
 	
