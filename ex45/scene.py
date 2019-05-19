@@ -163,6 +163,8 @@ class CScGreenHandsHamlet(CScene):
 		# 杀三个小鬼
 		for i in xrange(0, 3):
 			monster = figure.CMonster()
+			print u"妖兽[%d] 即将进入战斗系统" % (i+1)
+			DelaySleep()
 			res = combat.Combating(monster)
 			
 			if res == 'win':
@@ -172,17 +174,18 @@ class CScGreenHandsHamlet(CScene):
 				# 生命值减一
 				zhangdafan.ReduceHealthVal(1)
 				if False == zhangdafan.IsAlive():
+					# 生命值空了，下一场景：通关失败(死亡)
 					self.nextScene = 'Defeat'
 					return
 		
-		combat.CombatReport()
-		self.nextScene = 'DisturbanceShop'
-		
+		combat.CombatReport()		
 		print u"妖兽几乎都被诛杀。其中一只妖兽躺在地上，奄奄一息，快断气前说道："
 		print u"风波店中的天行刀主是你什么人？你为什么会他的武功道法？哼，别得意，我们鬼面门不会放过"
 		print u"天玄宗的，你们都等死吧！！！"
 		print u"说完，那只妖兽便断气了。\n\n"
 		print u"天行刀主？鬼面门？天玄宗？张大凡一时间不知道这些是什么。带着疑虑，张大凡把孩子送回了家。"
+		# 下一场景：风波店（卷入江湖追杀）
+		self.nextScene = 'DisturbanceShop'
 			
 class CScDisturbanceShop(CScene):
 	'''
@@ -215,12 +218,121 @@ class CScDisturbanceShop(CScene):
 		self.Background()
 	
 		print u"\n====风波店====\n"
+		DelaySleep()
 		print u"张大凡住在风波店天字七号房已经三天了，没见到什么奇怪的人或事，跟普通的旅店一样普通。"
+		DelaySleep()
 		print u"这天晚上不知道吃了什么一直闹肚子，一直往茅厕跑。"
+		DelaySleep()
 		print u"这不肚子又闹腾了，张大凡蹲茅坑呢。"
+		DelaySleep()
 		print u"隐隐约约觉得有人在讲话，声音很小，不注意都听不到。"
+		DelaySleep()
 		print u"张大凡意识到是有人在隔壁某个蹲位窃窃私语，顿时运起真气，屏气聆听。"
-		print u"老者：把这个放入天字二号房"
+		DelaySleep()
+		print u"老者：把这个放入天字二号房内香炉内。"
+		DelaySleep()
+		print u"年轻男子：是。"
+		print u"老者：待那人在房内饮完酒后，便会七窍流血而死，进入房间把他包裹内的灵珠拿来给我。"
+		print u"年轻男子：遵命。"
+		print u"老者：去吧。"
+		print u"......"
+		print u"对话的俩人是什么人？听他俩的对话似乎要谋杀某个人。不管怎么样，杀人总是不好的。"
+		print u"赶紧前往天字二号房通知那位客官。"
+		print u"张大凡匆忙从茅厕飞奔至天字二号房，刚近房门，就闻到一丝淡淡的檀香味。"
+		print u"此时也顾不得什么礼数了。张大凡撞开房门，看见一穿着华贵丝质衫，头顶玉冠的中年男子"
+		print u"正在饮酒。似乎已经喝了几口。（^-^剧情需要，檀香配酒能毒死人。其实不是的，大家别当真。）"
+		print u"张大凡：兄台，不可饮酒。不然可能会七窍流血而死。"
+		print u"中年男子：-、-、我已饮了数杯，并无大碍。你是何人？为何闯入我房中？"
+		print u"张大凡：我无意中得知有人要毒害你，故想来救你。"
+		print u"说话间，店小二拿着水壶上来问需不要添水。谈话的两人竟然没有听到小二上楼的声响。"
+		print u"要知道，房内的中年男子可是天玄宗宗主坐下第一大弟子唐莲。"
+		print u"凭他的功力，百步之外的动静能分辨得一清二楚。唐莲心想，这个小二有问题。"
+		print u"难道真的像这位小哥说的，有人想毒害他？"
+		print u"思虑间，竟觉得胸口气血一阵翻腾，吐了一口老血出来，意识到自己真的中毒了。"
+		print u"瞬间，唐莲打出一记碎空拳。拳气直逼店小二命门，小二躲闪不及，一命呜呼。"
+		print u"唐莲毒发，神识还有一丝清醒。躺在地上，叫唤着张大凡。"
+		print u"刚才的打斗发生的太快。张大凡吓傻了。听到呼唤声，赶紧上前扶起唐莲。"
+		print u"一接触到张大凡，唐莲就感应到了张大凡身上有天玄宗天行刀主的功法。看来他是可靠之人。"
+		print u"唐莲：我快不行了。我的包袱里有一颗灵珠。你带着它，把它交给我师父天玄宗金光宗主。"
+		print u"唐莲：并告诉我师父，鬼面门设计阴谋，欲在八月十五的少林寺英雄大会歼灭各大派。"
+		print u"说完，唐莲就断气了。张大凡在他床上找到包袱，胡乱摸了一通，真的摸到一颗珠子。"
+		spiritName = zhangdafan.FindNotHasSpBead()
+		print u"拿起来一看是%s灵珠" % combat.MapSpiritName[spiritName]
+		zhangdafan.GainSpiritBead(spiritName)
+		print u"躺在地方的小二竟然还有一丝气息，他向窗外发了一记信号烟弹。"
+		print u"张大凡心想不妙，这风波店内肯定还有他的不少同党。"
+		print u"思考间，就听到门外熙熙攘攘的脚步声。看来只能跳窗而逃了。"
+		print u"张大凡跳窗后，一直跑，不敢停歇。他知道身后有一群人在追杀他。"
+		print u"跑了数十公里后，发现前面是一处断崖，无处可走了。"
+		print u"身后的那群追杀者也赶上来了，一个个都带着鬼面具，其中一个还带着人骨帽，十分可怖。"
+		print u"张大凡心想横竖都是死，直接跳了断崖。"
+		# 下一场景：东海死火山（奇遇练得神功）
+		self.nextScene = "ExtinctVolcanoInEastChinaSea"
+		
+class CScExVolcanoInEastChinaSea(CScene):
+	'''
+	东海死火山（奇遇练得神功）
+	'''
+	def __init__(self):
+		pass
+	
+	def Background(self):
+		print u"\n\n\n 三日后，张大凡在海边醒来。"
+		print u"头好疼，这是哪里？是地狱吗？因为张大凡记得最后自己跳了悬崖。"
+		print u"现在是午夜时分，空中繁星点点。远处还有海浪声传来。"
+		print u"看来自己命大，断崖下就是海边。"
+		print u"不远处，有个洞口，张大凡艰难地走了过去，想进去避避风浪。"
+	
+	def Enter(self):
+		self.Background()
+		
+		print u"\n===== 东海死火山 =====\n"
+		print u"张大凡进入洞内，发现这洞内有乾坤。"
+		print u"洞深处有只凶兽，旁边还有一堆人骨，看来这只凶兽吃了不少人。"
+		print u"上前跟它打声招呼？还是避开它，自己躲在一角休息？ 打招呼[N] 休息[Y]"
+		res = raw_input("> ")
+		
+		if res == 'N':
+			print u"\n张大凡：兽兽，你好？Hello? Bonjour?"
+			print u"五灵兽：哭了。三百年过去了，终于又看到人了。呜呜~~~~"
+			print u"张大凡：你不会吃我吧？"
+			print u"五灵兽：我可是道家仙兽--五灵兽，不是什么邪魔，怎么会乱吃人？"
+			print u"张大凡：那这些白骨？？"
+			print u"五灵兽：他们是我五百年前的主人仙灵道长及弟子们的尸骨。自然死亡而已。"
+			print u"五灵兽：还有一些是恶徒，想抢夺我看守的宝物，被我诛杀。"
+			print u"五灵兽：你我有缘，你若能答出我出的题目，我就把宝物赠与你。"
+			print u"五灵兽：题目：背出圆周率，精确到小数点第10位即可"
+			resPai = raw_input("> ")
+			
+			if 0 == resPai.find('3.1415926535'):
+				print u"五灵兽：看来真是道家有缘人。宝物就赠与你吧。"
+				print u"---- 获得 天香续命丹*5 ----"
+				print u"恭喜你，生命值+5"
+				zhangdafan.AddHealthVal(5)
+				spiritName = zhangdafan.FindNotHasSpBead()
+				print u"---- 获得 %s灵珠*1----" % combat.MapSpiritName[spiritName]
+				zhangdafan.GainSpiritBead(spiritName)				
+				spiritName = zhangdafan.FindNotHasSpBead()
+				print u"---- 获得 %s灵珠*1----" % combat.MapSpiritName[spiritName]
+				zhangdafan.GainSpiritBead(spiritName)
+				
+		
+		print u"\n数日后，张大凡身体基本恢复。"
+		print u"乔装打扮后，来到风波店附件。"
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
 		
 	
 	

@@ -38,6 +38,10 @@ class DZMultiMap(object):
 		itemIndex.append(self.keyS[index])
 		itemIndex.append(self.valueS[index])
 		return itemIndex
+	
+	def PrintItems(self):
+		for i in xrange(0, len(self.keyS)):
+			print combat.MapSpiritName[self.keyS[i]], " : ", self.valueS[i]
 
 
 class CCreature(object):
@@ -77,12 +81,9 @@ class CCreature(object):
 	def ReduceSomeSpiritVal(self, spiritName, val):
 		self.fiveSpiritVal[spiritName] -= val
 	def PrintSomeSpiritVal(self):
-		print u"金:%d 木:%d 水:%d 火:%d 土:%d" % (self.fiveSpiritVal['metal'],
-			self.fiveSpiritVal['wood'],
-			self.fiveSpiritVal['water'],
-			self.fiveSpiritVal['fire'],
-			self.fiveSpiritVal['earth'])
-		
+		print u"<<< 金:%d 木:%d 水:%d 火:%d 土:%d" % (self.fiveSpiritVal['metal'], self.fiveSpiritVal['wood'],self.fiveSpiritVal['water'],self.fiveSpiritVal['fire'],self.fiveSpiritVal['earth'])
+	
+	
 	def GetThreeCard(self):
 		cards = DZMultiMap()
 		
@@ -105,11 +106,12 @@ class CCreature(object):
 		return cards
 	
 	def AddSpiritForWin(self, opponent):
-		AddSomeSpiritVal(self, 'metal', opponent.GetSomeSpiritVal('metal'))
-		self.AddSomeSpiritVal(self, 'wood', opponent.GetSomeSpiritVal('wood'))
-		self.AddSomeSpiritVal(self, 'water', opponent.GetSomeSpiritVal('water'))
-		self.AddSomeSpiritVal(self, 'fire', opponent.GetSomeSpiritVal('fire'))
-		self.AddSomeSpiritVal(self, 'earth', opponent.GetSomeSpiritVal('earth'))
+		self.AddSomeSpiritVal('metal', opponent.GetSomeSpiritVal('metal'))
+		# AddSomeSpiritVal(self, 'wood', opponent.GetSomeSpiritVal('wood')) # Error
+		self.AddSomeSpiritVal('wood', opponent.GetSomeSpiritVal('wood'))
+		self.AddSomeSpiritVal('water', opponent.GetSomeSpiritVal('water'))
+		self.AddSomeSpiritVal('fire', opponent.GetSomeSpiritVal('fire'))
+		self.AddSomeSpiritVal('earth', opponent.GetSomeSpiritVal('earth'))
 		
 class CProtagonist(CCreature):
 	'''
@@ -134,17 +136,38 @@ class CProtagonist(CCreature):
 		CCreature.AddSomeSpiritVal(self, spiritName, val)
 		# super(CProtagonist, self).AddSomeSpiritVal(spiritName, val)
 		# self.fiveSpiritVal[spiritName] += val
+		combat.DelaySleep()
 		print u"恭喜你。你的五灵值升级了，目前为"
+		combat.DelaySleep()
 		self.PrintSomeSpiritVal()
+		combat.DelaySleep()
 	def ReduceSomeSpiritVal(self, spiritName, val):
 		super(CScene, self).ReduceSomeSpiritVal(spiritName, val)
+		combat.DelaySleep()
 		print u"很抱歉。你的五灵值降低了，目前为"
+		combat.DelaySleep()
 		self.PrintSomeSpiritVal()
+		combat.DelaySleep()
+		
 	def GainSpiritBead(self, spiritName):
+		'''
+		获得某颗灵珠
+		'''
+		combat.DelaySleep()
 		print u"获得%s灵珠" % combat.MapSpiritName[spiritName]
 		self.hasBead[spiritName] = 1
 		# AddSomeSpiritVal(self, spiritName, 1) # Error
+		combat.DelaySleep()
 		self.AddSomeSpiritVal(spiritName, 1)
+		combat.DelaySleep()
+	def FindNotHasSpBead(self):
+		'''
+		返回尚未获得的某灵珠属性
+		'''
+		for i in self.hasBead.iteritems():
+			if i[1] == 0:
+				return i[0]
+
 		
 
 # 主人公全局对象-张大凡

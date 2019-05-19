@@ -11,6 +11,12 @@
 
 import time
 
+def DelaySleep():
+	'''
+	线程睡眠
+	'''
+	time.sleep(2)
+
 def LoadTip(stat, res):
 	"""
 	场景加载提示语
@@ -57,10 +63,17 @@ def PrintRule():
 	'''
 	战斗规则说明
 	'''
+	DelaySleep()
 	print u"战斗双方各有三张五灵符，每张符有各自的五灵属性和五灵值。"
+	DelaySleep()
 	print u"五灵符根据五灵属性相生相克。"
+	DelaySleep()
 	print u"若双方五灵符属性一样，则比较五灵值；若五灵值也一样，则平局。"
+	DelaySleep()
 	print u"战斗双方每次各出一张符。三局两胜。"
+	DelaySleep()
+	print u"若战斗获胜，则对方的五灵值归你所有；否则，你的生命值减一。"
+	DelaySleep()
 
 
 def comparSpirit(spiritA, spiritB):
@@ -109,15 +122,17 @@ def Combating(playerB):
 	
 	cardsDafan = zhangdafan.GetThreeCard()
 	cardsB = playerB.GetThreeCard()
+	print u"你的五灵符: "
+	cardsDafan.PrintItems()
+	print u"对方的五灵符: "
+	cardsB.PrintItems()
+	
 	keysDafan = cardsDafan.GetKeys()
 	keysB = cardsB.GetKeys()
 	valuesDafan = cardsDafan.GetValues()
 	valuesB = cardsB.GetValues()	
-	print "keysDafan: ", keysDafan
-	print "keysB: ", keysB
 	resList = []
-	for i in xrange(0, 3):
-		print 'compare card index: ', i
+	for i in xrange(0, len(keysDafan)):
 		spiritDafan = keysDafan[i]
 		spiritB = keysB[i]
 		res = comparSpirit(spiritDafan, spiritB)
@@ -135,20 +150,22 @@ def Combating(playerB):
 		resList.append(res)
 	
 	if resList.count('win') >= 2:
+		print u"恭喜，战斗获胜。"
 		return 'win'
 	elif resList.count('defeat') >= 2:
+		print u"抱歉，战斗败北。"
 		return 'defeat'
 	else:
+		print u"战斗平局。"
 		return 'tie'
 
 def CombatReport():
 	'''
 	战果统计
 	'''
-	print u"恭喜，战斗获胜。"
 	print u"目前，少侠的境界如下："
-	print u"<<<生命值: %d" % zhangdafan.GetHealthVal()
-	print u"<<<", zhangdafan.PrintSomeSpiritVal()
+	print u"<<< 生命值: %d" % zhangdafan.GetHealthVal()
+	zhangdafan.PrintSomeSpiritVal()
 	
 	
 	

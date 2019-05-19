@@ -3,24 +3,22 @@
 '''
 练习45:你来制作一个游戏
 
-主要参考仙剑类游戏，闯关打怪升级的模式。
+主要参考仙剑类游戏，闯关探宝打怪升级的模式。
 具体设计方案请看文档《仙剑101设计脚本》
 如果看不懂或不明白的话，直接运行此脚本，
 进入游戏玩下就明白了。
-'''
 
-print '11'
+剧情写的太多了，写的好累人。跟写小说似的。
+'''
 
 import scene
 scene.LoadTip(u"场景模块导入中", u"场景模块导入成功")
-
-print '22'
 
 Map = {
 	"Start" : scene.CScStart(),
 	"GreenHandsHamlet" : scene.CScGreenHandsHamlet(),
 	"DisturbanceShop" : scene.CScDisturbanceShop(),
-	# "ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
+	"ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
 	# "ShuraGarden" : scene.CScShuraGarden(),
 	# "ShaolinTemple" : scene.CScShaolinTemple(),
 	# "Pass" : scene.CScPass(),
@@ -31,14 +29,10 @@ Map = {
 
 def StartGame():
 	# 开始游戏
-	
 	nowScene = Map['Start']
-	print '1'
 	nowScene.Enter()
-	print '2'
 	nextSceneName = nowScene.GetNextScene()
-	print '3'
-	
+
 	while nextSceneName != "Pass" and nextSceneName != "Defeat":
 		nowScene = Map[nextSceneName]
 		nowScene.Enter()
@@ -49,9 +43,7 @@ def StartGame():
 	return res
 
 # main函数。脚本入口处
-print '4'
 for i in xrange(1,5) :
-	print '5'
 	res = StartGame()
 	if res == 'N':
 		break
