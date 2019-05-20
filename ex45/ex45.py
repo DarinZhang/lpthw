@@ -19,7 +19,7 @@ Map = {
 	"GreenHandsHamlet" : scene.CScGreenHandsHamlet(),
 	"DisturbanceShop" : scene.CScDisturbanceShop(),
 	"ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
-	# "ShuraGarden" : scene.CScShuraGarden(),
+	"ShuraGarden" : scene.CScShuraGarden(),
 	# "ShaolinTemple" : scene.CScShaolinTemple(),
 	# "Pass" : scene.CScPass(),
 	# "Defeat" : scene.CScDefeat(),

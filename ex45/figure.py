@@ -106,11 +106,11 @@ class CCreature(object):
 		return cards
 	
 	def AddSpiritForWin(self, opponent):
-		self.AddSomeSpiritVal('metal', opponent.GetSomeSpiritVal('metal'))
+		self.AddSomeSpiritVal('metal', opponent.GetSomeSpiritVal('metal'), False)
 		# AddSomeSpiritVal(self, 'wood', opponent.GetSomeSpiritVal('wood')) # Error
-		self.AddSomeSpiritVal('wood', opponent.GetSomeSpiritVal('wood'))
-		self.AddSomeSpiritVal('water', opponent.GetSomeSpiritVal('water'))
-		self.AddSomeSpiritVal('fire', opponent.GetSomeSpiritVal('fire'))
+		self.AddSomeSpiritVal('wood', opponent.GetSomeSpiritVal('wood'), False)
+		self.AddSomeSpiritVal('water', opponent.GetSomeSpiritVal('water'), False)
+		self.AddSomeSpiritVal('fire', opponent.GetSomeSpiritVal('fire'), False)
 		self.AddSomeSpiritVal('earth', opponent.GetSomeSpiritVal('earth'))
 		
 class CProtagonist(CCreature):
@@ -131,16 +131,19 @@ class CProtagonist(CCreature):
 			"earth": 0
 		}
 		
-	def AddSomeSpiritVal(self, spiritName, val):
+	def AddSomeSpiritVal(self, spiritName, val, bPrintTip = True):
 		# CCreature(self).AddSomeSpiritVal(spiritName, val) # Error
 		CCreature.AddSomeSpiritVal(self, spiritName, val)
 		# super(CProtagonist, self).AddSomeSpiritVal(spiritName, val)
 		# self.fiveSpiritVal[spiritName] += val
-		combat.DelaySleep()
-		print u"恭喜你。你的五灵值升级了，目前为"
-		combat.DelaySleep()
-		self.PrintSomeSpiritVal()
-		combat.DelaySleep()
+		
+		if bPrintTip:
+			combat.DelaySleep()
+			print u"恭喜你。你的五灵值升级了，目前为"
+			combat.DelaySleep()
+			self.PrintSomeSpiritVal()
+			combat.DelaySleep()
+			
 	def ReduceSomeSpiritVal(self, spiritName, val):
 		super(CScene, self).ReduceSomeSpiritVal(spiritName, val)
 		combat.DelaySleep()

@@ -315,10 +315,57 @@ class CScExVolcanoInEastChinaSea(CScene):
 				spiritName = zhangdafan.FindNotHasSpBead()
 				print u"---- 获得 %s灵珠*1----" % combat.MapSpiritName[spiritName]
 				zhangdafan.GainSpiritBead(spiritName)
-				
+			else:
+				print u"回答错误，错失宝物。"
+			print u"五灵兽：送你一本武功秘籍，你闲时看看打发时间吧。"
+			print u"张大凡拿起那本破书，书名模糊不清，隐约看到叫《乾坤大罗移》。"
+			print u"张大凡坐到角落里，一边休息，一边练习秘籍。"
+			print u"\n\n数日后，张大凡身体基本恢复。武功水平也已达到武林一等一高手境界。"
+		else:
+			print u"张大凡走到一边自己休息去了。"
+			print u"\n\n数日后，张大凡身体基本恢复。"
 		
-		print u"\n数日后，张大凡身体基本恢复。"
-		print u"乔装打扮后，来到风波店附件。"
+		print u"乔装打扮后，来到风波店附近。天字二号房内整洁如旧，仿佛前几天的事就没发生似的。"
+		print u"连续在风波店周围晃了几天，都没发现什么可疑的人和事。"
+		print u"看来鬼面门的人已经离开这里了。张大凡心想，赶紧要找到天玄宗的金光宗主。"
+		print u"告知他详情并小心防范鬼面门。"
+		print u"听说，天玄宗在南方第一大城天启城。那就朝南走吧。"
+		
+		# 下一场景：修罗院（探寻真相，英雄救美，临危受命）
+		self.nextScene = "ShuraGarden"
+		
+class CScShuraGarden(CScene):
+	'''
+	修罗院（探寻真相，英雄救美，临危受命）
+	'''
+	def __init__(self):
+		pass
+	
+	def Background(self):
+		print u"\n\n 这两天，张大凡运足真气，连续急速往南走了百十公里。"
+		print u"这里是迷雾森林，离天启城最多还有半天的路程。"
+		print u"实在是太累了，便想倚在树下小憩一下，休息片刻再继续赶路。"
+		print u"夕阳西下，落日余晖洒在身上暖暖的，张大凡很快就入睡了。"
+		print u"突然，张大凡听到女子的呼救声。"
+		print u"赶紧睁眼，竟不想太阳一落山，这迷雾森林一片漆黑，还起了瘴气。"
+		print u"张大凡立马运起龟息大法，防止瘴气入侵。"
+		print u"张大凡循着声音追去，追了数十米，突然没了声音。"
+		print u"但是前面似乎有灯光了。隐约看到树林深处有出宅院。"
+		print u"张大凡轻声来到院下，院门紧锁。仔细辨认下，看出院名叫 修罗院。"
+		print u"看来女子应该是被虏至这院内了。"
+		print u"张大凡运足真气，轻轻一跃，落入院内。"
+		
+		
+	def Enter(self):
+		self.Background()
+		
+		print u"\n==== 修罗院 ===="
+		print u"院内一房间烛光摇曳，从窗上看到两个影子在对话。"
+		print u"老者：人抓到了吗？"
+		print u"年轻男子：已抓到。关在柴房了。"
+		print u"老者：注意看管，她可是金光老贼的掌上明珠。后天武林大会上看他如何抉择？要天下，还是要女儿？"
+		print u"年轻男子：是。"
+		
 		
 		
 		
