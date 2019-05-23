@@ -170,6 +170,12 @@ class CProtagonist(CCreature):
 		for i in self.hasBead.iteritems():
 			if i[1] == 0:
 				return i[0]
+	def IsGetAllBeads(self):
+		'''
+		是否已集齐金木水火土无颗灵珠
+		'''
+		return (self.hasBead.values() == [1,1,1,1,1])
+		
 
 		
 
@@ -184,6 +190,19 @@ class CBoss(CCreature):
 	def __init__(self):
 		#super(CProtagonist, self).healthValue = 5
 		CCreature(self).healthValue = 3
+	
+	def AddAllSptValues(self):
+		'''
+		当BOSS被杀到只剩最后一滴血时，灵力值全部+1
+		'''
+		if self.healthValue == 1:
+			print u"叶鼎天只剩最后一滴血了，拼死一搏，启用魔道禁咒将五灵值全部增加了。"
+			self.fiveSpiritVal['metal'] += 1
+			self.fiveSpiritVal['wood'] += 1
+			self.fiveSpiritVal['water'] += 1
+			self.fiveSpiritVal['fire'] += 1
+			self.fiveSpiritVal['earth'] += 1
+	
 
 class CMonster(CCreature):
 	'''

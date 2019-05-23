@@ -20,9 +20,9 @@ Map = {
 	"DisturbanceShop" : scene.CScDisturbanceShop(),
 	"ExtinctVolcanoInEastChinaSea": scene.CScExVolcanoInEastChinaSea(),
 	"ShuraGarden" : scene.CScShuraGarden(),
-	# "ShaolinTemple" : scene.CScShaolinTemple(),
-	# "Pass" : scene.CScPass(),
-	# "Defeat" : scene.CScDefeat(),
+	"ShaolinTemple" : scene.CScShaolinTemple(),
+	"Pass" : scene.CScPass(),
+	"Defeat" : scene.CScDefeat(),
 	# "Again" : scene.CScAgain(),
 	# "Exit" : scene.CScExit()
 }

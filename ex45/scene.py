@@ -355,7 +355,6 @@ class CScShuraGarden(CScene):
 		print u"看来女子应该是被虏至这院内了。"
 		print u"张大凡运足真气，轻轻一跃，落入院内。"
 		
-		
 	def Enter(self):
 		self.Background()
 		
@@ -405,9 +404,75 @@ class CScShuraGarden(CScene):
 		self.nextScene = "ShaolinTemple"
 		
 		
+class CScShaolinTemple(object):
+	'''
+	少林寺（英雄大会，拯救江湖）
+	'''
+	def __init__(self):
+		pass
+	
+	def Background(self):
+		print u"\n\n嵩山脚下，树荫茂密"
+		print u"张大凡乔装成鬼面门的一员门徒混在鬼面门里，悄悄地埋伏在英雄大会会场周围。"
+		print u"大会进程一直很顺利，没有什么意外。现在进行到选举武林盟主的最后环节了。"
+		print u"就在各派欲推选金光宗主为盟主时，突然天空中乌云密布，邪风四起。"
+		print u"忽然有一个人站在会场上。脸色发青，眼窝深邃，眉间一道褐色印记。"
+		print u"此人便是鬼面门门主叶鼎天。"
+		print u"叶鼎天：我不服。金光老贼你何德何能配得上武林盟主？"
+		print u"叶鼎天：还不是仗着你天玄宗人多势众。有本事一决高下如何？"
+		print u"金光：本尊前日收服阴世幽泉的天魔兽，内功受损。另择他日再切磋如何？"
+		print u"叶鼎天：天生怕死，分明就是不敢一战。就想占着武林盟主之位。"
+		print u"叶鼎天：你今日若不战，你女儿就是死路一条。"
+		print u"叶鼎天长袖一挥，金千落被捆绑着躺在地上。其实，这是张大凡用幻术变化的。"
+		print u"!!!突然东方佛光普照，一个自带光芒的男子从天而降。"
+		print u"!!!我们的男主角张大凡闪亮登场啦，噔~噔~~噔~~"
+	
+	def Enter(self):
+		print u"\n\n====== 少林寺 ======"
+		print u"张大凡：无耻邪人，金光宗主身受重伤，而你却乘人之危，且以千落小姐性命相逼。"
+		print u"张大凡：我还从未见过如此厚颜无耻之徒。"
+		print u"叶鼎天：金光老贼真可耻，竟派个黄毛小子来打发我。快出来一战，否则我杀了你女儿。"
+		print u"金光欲上前迎战，张大凡拦住了他，并告知请放心，自己能对付叶鼎天。"
+		print u"张大凡：魔头莫嚣张，你看看躺在地上的人到底是不是千落小姐？"
+		print u"叶鼎天仔细查看，才发现这是幻术变化的假人，心想这小子功力竟如此高深。"
+		print u"顿时斗气化马，气剑瞬间射向张大凡。"
+		print u"!!!BOSS大决战即将到来!!!"
+		print u"张大凡立马施展五灵秘术，同时配合身上已有的五灵珠，欲布下五灵佛光阵。"
+		print u"只见身上的五灵珠渐渐飞向天空"
 		
+		if zhangdafan.IsGetAllBeads():
+			# 已集齐五颗灵珠，布阵成功
+			print u"金木水火土五颗灵珠已集齐，且各自归位，布阵成功！！！"
+			print u"顿时佛光满天，金刚法相浮现，叶鼎天顶不住佛法高深，即将灰飞烟灭。"
+			# 下一场景：通关成功
+			self.nextScene = 'Pass'
+		else:
+			# 尚未集齐五颗灵珠，布阵失败
+			print u"金木水火土五颗灵珠尚未集齐，布阵失败！"
+			print u"张大凡心想,看来只能肉搏了。"
+			print u"===== 终决之战 ====="
+			print u"!!!击杀魔头叶鼎天"
+			monster = figure.CMonster()
+			bossDingTian = figure.CBoss()
+			print u"BOSS 即将进入战斗系统"
+			DelaySleep()
+			while bossDingTian.IsAlive() and zhangdafan.IsAlive():
+				res = combat.Combating(bossDingTian)
+				if res == 'win':
+					# BOSS失败时，其五灵值不归自己所有
+					# 只是生命值减一
+					# zhangdafan.AddSpiritForWin(monster)
+					bossDingTian.ReduceHealthVal(1)
+					bossDingTian.AddAllSptValues()
+				elif res == 'defeat':
+					# 生命值减一
+					zhangdafan.ReduceHealthVal(1)
+					if False == zhangdafan.IsAlive():
+						# 生命值空了，下一场景：通关失败(死亡)
+						self.nextScene = 'Defeat'
+						
 		
-		
+		combat.CombatReport()	
 		
 		
 		
