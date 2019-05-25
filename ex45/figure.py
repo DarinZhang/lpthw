@@ -175,9 +175,7 @@ class CProtagonist(CCreature):
 		是否已集齐金木水火土无颗灵珠
 		'''
 		return (self.hasBead.values() == [1,1,1,1,1])
-		
 
-		
 
 # 主人公全局对象-张大凡
 zhurengong = CProtagonist();
@@ -188,8 +186,9 @@ class CBoss(CCreature):
 	反派BOSS类定义
 	'''
 	def __init__(self):
-		#super(CProtagonist, self).healthValue = 5
-		CCreature(self).healthValue = 3
+		# CCreature(self).healthValue = 3 # Error
+		super(CBoss, self).__init__()
+		super(CBoss, self).SetHealthVal(3)
 	
 	def AddAllSptValues(self):
 		'''

@@ -15,7 +15,7 @@ def DelaySleep():
 	'''
 	线程睡眠
 	'''
-	time.sleep(2)
+	time.sleep(1)
 
 def LoadTip(stat, res):
 	"""
@@ -163,7 +163,7 @@ def CombatReport():
 	'''
 	战果统计
 	'''
-	print u"目前，少侠的境界如下："
+	print u"\n目前，少侠的境界如下："
 	print u"<<< 生命值: %d" % zhangdafan.GetHealthVal()
 	zhangdafan.PrintSomeSpiritVal()
 	
