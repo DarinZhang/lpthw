@@ -60,7 +60,7 @@ for i in xrange(1,5) :
 	res = StartGame()
 	if res == 'N':
 		break
-	elif i > 3:
+	elif i >= 3:
 		print u"防沉迷游戏系统提醒您，您本次游戏已花费较长时间，被强制退出游戏。"
 		print u"请合理安排游戏时间。下次再见。"
 		break

@@ -66,6 +66,10 @@ class CScStart(CScene):
 	def Enter(self):
 		self.Background()
 		
+		# zhangdafan是全局对象，将生命值、五灵值、朱灵珠恢复默认值
+		# 否则第二次游戏时，会使用第一次游戏结束时的任务状态
+		zhangdafan.__init__()
+		
 		print u"=====南宋末年，余杭镇====="
 		print u"刚经历冠礼的张大凡闲着无聊，和隔壁的小虎去秧田里捕鱼。"
 		DelaySleep()

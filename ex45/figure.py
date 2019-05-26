@@ -175,6 +175,17 @@ class CProtagonist(CCreature):
 		是否已集齐金木水火土无颗灵珠
 		'''
 		return (self.hasBead.values() == [1,1,1,1,1])
+	def InitSpBeads(self):
+		'''
+		清空灵珠获取情况
+		'''
+		self.hasBead = {
+			"metal": 0,
+			"wood" : 0,
+			"water": 0,
+			"fire" : 0,
+			"earth": 0
+		}
 
 
 # 主人公全局对象-张大凡
