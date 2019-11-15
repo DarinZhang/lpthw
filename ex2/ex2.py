@@ -1,5 +1,5 @@
 # A comment, this is so you ...
-# Anythiny after the # is ignored by python.
+# Anything after the # is ignored by python.
 
 print "I could have code like this." # and the comment ...
 
